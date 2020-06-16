@@ -3,6 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>com.velopayments</groupId>
+        <artifactId>build</artifactId>
+        <version>32</version>
+    </parent>
+
     <groupId>com.velopayments.blockchain</groupId>
     <artifactId>velochain-sdk-parent</artifactId>
     <version>1.0.${revision}</version>
@@ -20,19 +26,9 @@
     </modules>
 
     <properties>
-        <revision>0-SNAPSHOT</revision>
         <vjblockchain.version>0.3.4</vjblockchain.version>
 
-        <minimum-maven.version>3.6.2</minimum-maven.version>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
         <java.version>11</java.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <resource.delimiter>@</resource.delimiter>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <flatten-maven-plugin.version>1.2.1</flatten-maven-plugin.version>
         <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
         <lombok-maven-plugin.version>1.18.10.0</lombok-maven-plugin.version>
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
@@ -44,9 +40,9 @@
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <gmavenplus-plugin.version>1.8.1</gmavenplus-plugin.version>
-
         <testcontainers.version>1.9.1</testcontainers.version>
         <apache-httpclient.version>4.5.12</apache-httpclient.version>
+        <revision>0-SNAPSHOT</revision>
         <cryptofs.version>1.9.10</cryptofs.version>
         <lombok.version>1.18.8</lombok.version>
         <jackson.version>2.11.0</jackson.version>
@@ -234,33 +230,6 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok-maven-plugin</artifactId>
                 <version>${lombok-maven-plugin.version}</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>${maven-enforcer-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>artifact-management</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireMavenVersion>
-                                    <version>[${minimum-maven.version},)</version>
-                                </requireMavenVersion>
-                                <banDistributionManagement />
-                                <requireNoRepositories>
-                                    <message>Don't define unsupported repositories in pom.xml</message>
-                                    <allowedRepositories>velo-nexus,central,velo-thirdparty,spring-releases,spring-milestones,bintray,spring-snapshots</allowedRepositories>
-                                    <allowedPluginRepositories>velo-nexus,central</allowedPluginRepositories>
-                                    <allowSnapshotRepositories>velo-nexus-snapshots,central</allowSnapshotRepositories>
-                                    <allowSnapshotPluginRepositories>velo-nexus-snapshots,central</allowSnapshotPluginRepositories>
-                                </requireNoRepositories>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
