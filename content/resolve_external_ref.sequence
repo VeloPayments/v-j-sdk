@@ -1,0 +1,28 @@
+title Get artifact content from the Vault
+
+Alice->+RemoteBlockChain: findTransactionById(transactionId)
+note right of Alice: Alice gets a transaction from the blockchain
+RemoteBlockChain->+AgentD: getTransactionById(transactionId)
+AgentD-->-RemoteBlockChain: Certificate
+RemoteBlockChain-->-Alice: TransactionReader
+
+note right of Alice: The transaction has an external reference\nfield which holds the vault receipt for that content.\nThe external reference certificate can be unwrapped\nfrom the vault receipt with getExternalReferences()
+Alice->+RemoteBlockChain: resolveExternalReference(externalRef)
+note right of Alice: Alice resolves external reference certificate\nto retrieve the content
+
+RemoteBlockChain->+RemoveVault: get(externalRef)
+RemoveVault->*ExternalReferenceRestClient: (creates)
+RemoveVault-->-RemoteBlockChain: ExternalReferenceRestClient
+RemoteBlockChain-->-Alice: ExternalReferenceRestClient
+Alice->+ExternalReferenceRestClient: read()
+ExternalReferenceRestClient->+VaultService: POST /v1/vault/resolve
+note right of ExternalReferenceRestClient: payload includes ExternalReference\ncertificate bytes
+alt Content has been removed
+   VaultService-->-ExternalReferenceRestClient: HttpResponse(404)
+   ExternalReferenceRestClient-->-Alice: VaultException
+else Content exists
+   VaultService-->-ExternalReferenceRestClient: HttpResponse(200,InputStream)
+   note left of ExternalReferenceRestClient: ValidatingInputStream verifies that the bytes read\nare checked against the content signature in the\nexternal reference certificate
+   ExternalReferenceRestClient-->-Alice: ValidatingInputStream (content bytes)
+end
+destroy ExternalReferenceRestClient

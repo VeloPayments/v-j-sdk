@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.velopayments.blockchain</groupId>
+        <artifactId>velochain-sdk-parent</artifactId>
+        <version>1.0.${revision}</version>
+    </parent>
+
+    <artifactId>velochain-sdk-all</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <velochain-sdk.version>1.0.${revision}</velochain-sdk.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.velopayments.blockchain</groupId>
+            <artifactId>velochain-sdk</artifactId>
+            <version>${velochain-sdk.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.velopayments.blockchain</groupId>
+                    <artifactId>vjblockchain-java</artifactId>
+                </exclusion>
+            </exclusions>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.velopayments.blockchain</groupId>
+            <artifactId>velochain-sdk-examples</artifactId>
+            <version>${velochain-sdk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.velopayments.blockchain</groupId>
+            <artifactId>vjblockchain-java</artifactId>
+            <version>${vjblockchain.version}</version>
+            <classifier>linux</classifier>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.velopayments.blockchain</groupId>
+            <artifactId>vjblockchain-java</artifactId>
+            <version>${vjblockchain.version}</version>
+            <classifier>osx</classifier>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${maven-assembly-plugin.version}</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/assembly/linux.xml</descriptor>
+                        <descriptor>src/assembly/osx.xml</descriptor>
+                    </descriptors>
+                    <attach>true</attach>
+                    <appendAssemblyId>true</appendAssemblyId>
+                    <mergeManifestMode>merge</mergeManifestMode>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>assemble-all</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

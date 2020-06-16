@@ -1,0 +1,38 @@
+title Store artifact content in the Vault
+
+Alice->+Alice: BlockchainUtils.transactionCertificateBuilder()
+Alice->+RemoteBlockChain: submit(transaction)
+note right of Alice: Alice creates an artifact in the blockchain\nby createing and sending a transaction
+RemoteBlockChain->+AgentD: submit(transaction)
+AgentD-->-RemoteBlockChain:
+RemoteBlockChain-->-Alice:
+
+
+note right of Alice: Alice has content to link that artifact,\nand creates an ExternalReference\ncertificate with the metadata for that content
+Alice->+Alice: VaultUtils.externalReferenceBuilder()
+
+Alice->+RemoteBlockChain: addExternalReference(externalRef, content)
+
+RemoteBlockChain->+AgentD: getLastTransactionIdForArtifactById(artifactId)
+note right of RemoteBlockChain: verify that the artifact exists
+AgentD-->-RemoteBlockChain:
+opt if artifact does not exist
+    RemoteBlockChain->Alice: BlockchainException
+end
+RemoteBlockChain->+RemoveVault: store(externalRef, content)
+
+RemoveVault->+VaultService: POST /v1/vault/store
+note right of RemoveVault: multipart payload includes ExternalReference\ncertificate bytes, and content bytes
+VaultService-->-RemoveVault: (Vault Receipt Certificate)
+note left of VaultService: Vault stores the content and then\ncreates a signed vault receipt certificate\nwhich wraps the exernal reference\ncertificate as a field
+
+RemoveVault-->-RemoteBlockChain: (Vault Receipt Certificate)
+RemoteBlockChain-->-Alice: (Vault Receipt Certificate)
+
+Alice->+Alice: BlockchainUtils.transactionCertificateBuilder()
+Alice->+RemoteBlockChain: submit(transaction)
+note right of Alice: Alice composes a second blockchain transaction for\nthe artifact which includes the vault receipt as a field\non the transaction
+RemoteBlockChain->+AgentD: submit(transaction)
+AgentD-->-RemoteBlockChain:
+RemoteBlockChain-->-Alice:
+

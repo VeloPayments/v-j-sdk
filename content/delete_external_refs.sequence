@@ -1,0 +1,21 @@
+title Delete artifact content in the Vault
+
+Alice->+RemoteBlockChain: deleteExternalReferencesByArtifactId(artifactId)
+note right of Alice: Alice wants the vault to purge\nPII data from her artifact
+
+RemoteBlockChain->+AgentD: findLastTransactionIdForArtifactById(artifactId)
+AgentD-->-RemoteBlockChain: transactionId
+loop while transactionId is not the root artifact transation
+    RemoteBlockChain->+AgentD: findTransactionById(transactionId)
+    AgentD-->-RemoteBlockChain: transaction
+    loop each external reference in transaction
+        RemoteBlockChain->+RemoveVault: delete(externalRefernce)
+        RemoveVault->+VaultService: POST /v1/vault/delete
+        note right of RemoveVault: multipart payload includes ExternalReference\ncertificate bytes
+        VaultService-->-RemoveVault: HttpReponse(200|404)
+        RemoveVault-->-RemoteBlockChain: boolean
+    end
+    RemoteBlockChain->+AgentD: findPreviousTransactionIdForTransactionById(transactionId)
+    AgentD-->-RemoteBlockChain: transactionId
+end
+

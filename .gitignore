@@ -1,0 +1,42 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.flattened-pom.xml
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.DS*
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### VSCode ###
+.vscode/
+
+### Velo ###
+*.pid
+*.log
+
+### UI ###
+ui/.yarn-cache
+
+data
+entities
+
+/docker/**/*.tar.xz
+/docker/*/velochain/
