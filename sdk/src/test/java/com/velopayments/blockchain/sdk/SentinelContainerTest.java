@@ -2,7 +2,6 @@ package com.velopayments.blockchain.sdk;
 
 import com.google.common.collect.Iterables;
 import com.velopayments.blockchain.cert.CertificateBuilder;
-import com.velopayments.blockchain.sdk.sentinel.SentinelRegistry;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

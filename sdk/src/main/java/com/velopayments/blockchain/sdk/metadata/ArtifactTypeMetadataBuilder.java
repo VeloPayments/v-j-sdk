@@ -1,14 +1,14 @@
 package com.velopayments.blockchain.sdk.metadata;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.velopayments.blockchain.cert.Certificate;
 import com.velopayments.blockchain.cert.CertificateBuilder;
-import com.velopayments.blockchain.cert.CertificateParser;
-import com.velopayments.blockchain.cert.CertificateReader;
 import com.velopayments.blockchain.sdk.BlockchainIOException;
 import com.velopayments.blockchain.sdk.BlockchainUtils;
 import com.velopayments.blockchain.sdk.TransactionReader;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayInputStream;

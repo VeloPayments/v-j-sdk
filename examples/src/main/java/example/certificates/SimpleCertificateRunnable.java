@@ -8,12 +8,7 @@ import com.velopayments.blockchain.sdk.RemoteBlockchain;
 import com.velopayments.blockchain.sdk.TransactionReader;
 import com.velopayments.blockchain.sdk.entity.EntityKeys;
 import com.velopayments.blockchain.sdk.entity.EntityTool;
-import com.velopayments.blockchain.sdk.metadata.ArtifactTypeMetadataBuilder;
-import com.velopayments.blockchain.sdk.metadata.FieldMetadata;
-import com.velopayments.blockchain.sdk.metadata.FieldType;
-import com.velopayments.blockchain.sdk.metadata.MetadataHelper;
-import com.velopayments.blockchain.sdk.metadata.SearchOptions;
-import com.velopayments.blockchain.sdk.metadata.TransactionType;
+import com.velopayments.blockchain.sdk.metadata.*;
 import example.ExamplesConfig;
 import org.awaitility.Duration;
 
@@ -22,11 +17,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 import static com.velopayments.blockchain.sdk.metadata.ArtifactTypeMetadataBuilder.extractMetadata;
-import static example.certificates.SimpleCertificateRunnable.SimpleArtifactMetadata.BAR_FIELD;
-import static example.certificates.SimpleCertificateRunnable.SimpleArtifactMetadata.DISPLAY_NAME;
-import static example.certificates.SimpleCertificateRunnable.SimpleArtifactMetadata.FOO_FIELD;
-import static example.certificates.SimpleCertificateRunnable.SimpleArtifactMetadata.SIMPLE_ARTIFACT_TYPE_ID;
-import static example.certificates.SimpleCertificateRunnable.SimpleArtifactMetadata.SIMPLE_TRANSACTION_TYPE;
+import static example.certificates.SimpleCertificateRunnable.SimpleArtifactMetadata.*;
 import static java.util.UUID.randomUUID;
 import static org.awaitility.Awaitility.await;
 

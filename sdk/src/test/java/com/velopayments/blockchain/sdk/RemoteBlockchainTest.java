@@ -16,7 +16,6 @@ import org.awaitility.Duration;
 import org.awaitility.core.ThrowingRunnable;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
-import org.mockserver.mockserver.MockServer;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.MockServerContainer;
 
@@ -304,7 +303,8 @@ public class RemoteBlockchainTest {
 
         awaitCanonized(() -> {
             assertThat(blockchain.getLatestBlockId())
-                .isNotEqualTo(startBlock).as("Latest block should advance");
+                .as("Latest block should advance")
+                .isNotEqualTo(startBlock);
 
             //find all blocks
             List<BlockReader> allBlocks = blockchain.findAllBlocksAfter(startBlock).collect(toList());
@@ -330,22 +330,19 @@ public class RemoteBlockchainTest {
             var blockId2 = blockchain.getLatestBlockId();
             assertNotEquals(blockId1, blockId2);
 
-            assertEquals(transactionId2, blockchain.findLastTransactionIdForArtifactById(artifactId).get());
-            assertEquals(Optional.empty(), blockchain.findLastTransactionIdForArtifactById(randomUUID()));
+            assertThat(blockchain.findLastTransactionIdForArtifactById(artifactId)).hasValue(transactionId2);
+            assertThat(blockchain.findLastTransactionIdForArtifactById(randomUUID())).isEmpty();
 
-            //assertEquals(blockId2, template.findLastBlockIdForArtifactById(artifactId).get());    waiting on BLOC-179
-            //assertEquals(Optional.empty(), template.findLastBlockIdForArtifactById(randomUUID()));
+            assertThat(blockchain.findTransactionBlockId(transactionId1)).hasValue(blockId1);
+            assertThat(blockchain.findTransactionBlockId(transactionId2)).hasValue(blockId2);
+            assertThat(blockchain.findTransactionBlockId(randomUUID())).isEmpty();
 
-            assertEquals(blockId1, blockchain.findTransactionBlockId(transactionId1).get());
-            assertEquals(blockId2, blockchain.findTransactionBlockId(transactionId2).get());
-            assertEquals(Optional.empty(), blockchain.findTransactionBlockId(randomUUID()));
-
-            assertEquals(blockId2, blockchain.findNextBlockId(blockId1).get());
-            assertEquals(blockId1, blockchain.findPrevBlockId(blockId2).get());
-            assertEquals(Optional.empty(), blockchain.findPrevBlockId(randomUUID()));
+            assertThat(blockchain.findNextBlockId(blockId1)).hasValue(blockId2);
+            assertThat(blockchain.findPrevBlockId(blockId2)).hasValue(blockId1);
+            assertThat(blockchain.findPrevBlockId(randomUUID())).isEmpty();
 
 
-            assertEquals(Optional.empty(), blockchain.findBlockById(randomUUID()));
+            assertThat(blockchain.findBlockById(randomUUID())).isEmpty();
             var blockReader = blockchain.findBlockById(blockId1).get();
 
             assertTrue(blockReader.getTransactions().stream()
@@ -354,21 +351,21 @@ public class RemoteBlockchainTest {
                 .contains(transactionId1));
 
             long block1Height = blockReader.getBlockHeight();
-            assertEquals(blockId1, blockchain.findBlockIdByBlockHeight(block1Height).get());
-            assertEquals(blockId2, blockchain.findBlockIdByBlockHeight(block1Height + 1).get());
-            assertEquals(Optional.empty(), blockchain.findBlockIdByBlockHeight(block1Height + 2));
+            assertThat(blockchain.findBlockIdByBlockHeight(block1Height)).hasValue(blockId1);
+            assertThat(blockchain.findBlockIdByBlockHeight(block1Height + 1)).hasValue(blockId2);
+            assertThat(blockchain.findBlockIdByBlockHeight(block1Height + 2)).isEmpty();
 
-            assertEquals(transactionId2, blockchain.findNextTransactionIdForTransactionById(transactionId1).get());
-            assertEquals(Optional.empty(), blockchain.findNextTransactionIdForTransactionById(transactionId2));
+            assertThat(blockchain.findNextTransactionIdForTransactionById(transactionId1)).hasValue(transactionId2);
+            assertThat(blockchain.findNextTransactionIdForTransactionById(transactionId2)).isEmpty();
 
-            assertEquals(transactionId1, blockchain.findPreviousTransactionIdForTransactionById(transactionId2).get());
-            assertEquals(Optional.empty(), blockchain.findPreviousTransactionIdForTransactionById(transactionId1));
+            assertThat(blockchain.findPreviousTransactionIdForTransactionById(transactionId2)).hasValue(transactionId1);
+            assertThat(blockchain.findPreviousTransactionIdForTransactionById(transactionId1)).isEmpty();
 
-            assertEquals(transactionId1, blockchain.findFirstTransactionIdForArtifactById(artifactId).get());
-            assertEquals(Optional.empty(), blockchain.findFirstTransactionIdForArtifactById(randomUUID()));
+            assertThat(blockchain.findFirstTransactionIdForArtifactById(artifactId)).hasValue(transactionId1);
+            assertThat(blockchain.findFirstTransactionIdForArtifactById(randomUUID())).isEmpty();
 
-            assertEquals(transactionId2, blockchain.findLastTransactionIdForArtifactById(artifactId).get());
-            assertEquals(Optional.empty(), blockchain.findLastTransactionIdForArtifactById(randomUUID()));
+            assertThat(blockchain.findLastTransactionIdForArtifactById(artifactId)).hasValue(transactionId2);
+            assertThat(blockchain.findLastTransactionIdForArtifactById(randomUUID())).isEmpty();
         });
     }
 

@@ -2,7 +2,10 @@ package com.velopayments.blockchain.sdk.metadata;
 
 import com.velopayments.blockchain.cert.Certificate;
 import com.velopayments.blockchain.client.TransactionStatus;
-import com.velopayments.blockchain.sdk.*;
+import com.velopayments.blockchain.sdk.BlockchainOperations;
+import com.velopayments.blockchain.sdk.BlockchainUtils;
+import com.velopayments.blockchain.sdk.Signer;
+import com.velopayments.blockchain.sdk.TransactionReader;
 import com.velopayments.blockchain.sdk.entity.EntityMetadata;
 import org.slf4j.Logger;
 

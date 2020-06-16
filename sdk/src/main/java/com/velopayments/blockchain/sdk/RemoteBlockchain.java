@@ -432,14 +432,12 @@ public class RemoteBlockchain implements BlockchainOperations, AutoCloseable {
 
 
     protected void guard(Certificate transactionCert) {
-        if (this.guardRegistry != null) {
-            for (PreSubmitGuard guard : this.guardRegistry.getPreSumbitGuards()) {
-                try {
-                    guard.evaluate(new TransactionReader(transactionCert), this);
-                } catch (Exception ex) {
-                    log.warn("{} guard rejected transaction {}", guard.getClass().getName(), ex.getMessage());
-                    throw ex;
-                }
+        for (PreSubmitGuard guard : this.guardRegistry.getPreSumbitGuards()) {
+            try {
+                guard.evaluate(new TransactionReader(transactionCert), this);
+            } catch (Exception ex) {
+                log.warn("{} guard rejected transaction {}", guard.getClass().getName(), ex.getMessage());
+                throw ex;
             }
         }
     }
@@ -597,7 +595,7 @@ public class RemoteBlockchain implements BlockchainOperations, AutoCloseable {
 
         public void returnConnection(RemoteAgentConnection conn) {
             if (conn != null) {
-                Integer status = -1;
+                Integer status;
                 try {
                     status = conn.getConnectionStatus().get(500, TimeUnit.MILLISECONDS);
                 } catch (CancellationException | InterruptedException ex) {

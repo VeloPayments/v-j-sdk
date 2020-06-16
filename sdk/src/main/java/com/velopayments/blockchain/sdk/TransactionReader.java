@@ -1,12 +1,13 @@
 package com.velopayments.blockchain.sdk;
 
-import com.velopayments.blockchain.cert.*;
+import com.velopayments.blockchain.cert.Certificate;
+import com.velopayments.blockchain.cert.CertificateParser;
+import com.velopayments.blockchain.cert.CertificateReader;
+import com.velopayments.blockchain.cert.Field;
 import com.velopayments.blockchain.crypt.EncryptionPublicKey;
 import com.velopayments.blockchain.crypt.SigningPublicKey;
 import com.velopayments.blockchain.sdk.vault.VaultUtils;
 
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
 import java.util.*;
 
 import static com.velopayments.blockchain.cert.Field.*;

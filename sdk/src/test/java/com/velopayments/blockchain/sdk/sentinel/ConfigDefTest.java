@@ -1,11 +1,8 @@
 package com.velopayments.blockchain.sdk.sentinel;
 
 import com.velopayments.blockchain.sdk.BlockchainOperations;
-import com.velopayments.blockchain.sdk.entity.EntityKeys;
-import com.velopayments.blockchain.sdk.sentinel.criteria.ArtifactIdAndState;
 import com.velopayments.blockchain.sdk.sentinel.criteria.Criteria;
 import lombok.Data;
-import lombok.NonNull;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
