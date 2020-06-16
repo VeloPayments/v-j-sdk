@@ -2,12 +2,13 @@ package com.velopayments.blockchain.sdk.sentinel;
 
 import com.velopayments.blockchain.sdk.BlockReader;
 import com.velopayments.blockchain.sdk.BlockchainOperations;
-import com.velopayments.blockchain.sdk.entity.EntityKeys;
 import com.velopayments.blockchain.sdk.sentinel.criteria.Criteria;
 import com.velopayments.blockchain.sdk.sentinel.criteria.InvalidCriteriaException;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.velopayments.blockchain.sdk.metadata.ArtifactTypeMetadataBuilder.assertNotNull;

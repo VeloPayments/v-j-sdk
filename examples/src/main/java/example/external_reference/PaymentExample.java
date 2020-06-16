@@ -1,6 +1,9 @@
 package example.external_reference;
 
-import com.velopayments.blockchain.cert.*;
+import com.velopayments.blockchain.cert.Certificate;
+import com.velopayments.blockchain.cert.CertificateBuilder;
+import com.velopayments.blockchain.cert.CertificateParser;
+import com.velopayments.blockchain.cert.CertificateReader;
 import com.velopayments.blockchain.client.TransactionStatus;
 import com.velopayments.blockchain.sdk.BlockchainOperations;
 import com.velopayments.blockchain.sdk.BlockchainUtils;

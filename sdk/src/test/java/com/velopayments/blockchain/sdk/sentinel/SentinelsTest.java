@@ -4,7 +4,6 @@ import com.velopayments.blockchain.sdk.BlockchainOperations;
 import com.velopayments.blockchain.sdk.BlockchainUtils;
 import com.velopayments.blockchain.sdk.RemoteBlockchain;
 import com.velopayments.blockchain.sdk.TestUtils;
-import com.velopayments.blockchain.sdk.entity.EntityKeys;
 import com.velopayments.blockchain.sdk.metadata.CoreMetadata;
 import com.velopayments.blockchain.sdk.sentinel.criteria.ArtifactIdAndState;
 import com.velopayments.blockchain.sdk.sentinel.criteria.Criteria;

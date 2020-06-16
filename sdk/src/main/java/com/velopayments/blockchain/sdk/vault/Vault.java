@@ -5,7 +5,6 @@ import com.velopayments.blockchain.cert.Certificate;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Optional;
 
 /**
  * An interface to provide a vault for storing externally referenced data.
