@@ -5,7 +5,6 @@ import lombok.NonNull;
 
 import java.util.*;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 /**
  * Specifies a set of configurations. For each configuration has a name, type, the default value.

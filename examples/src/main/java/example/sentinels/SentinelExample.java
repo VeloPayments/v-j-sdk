@@ -9,20 +9,11 @@ import com.velopayments.blockchain.sdk.entity.EntityTool;
 import com.velopayments.blockchain.sdk.metadata.ArtifactTypeMetadataAccess;
 import com.velopayments.blockchain.sdk.metadata.ArtifactTypeMetadataAccessBlockchain;
 import com.velopayments.blockchain.sdk.metadata.TransactionType;
-import com.velopayments.blockchain.sdk.sentinel.SentinelRegistry;
-import com.velopayments.blockchain.sdk.sentinel.criteria.Criteria;
 import example.ExamplesConfig;
 
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 

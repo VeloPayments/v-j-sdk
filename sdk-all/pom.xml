@@ -30,16 +30,6 @@
             </exclusions>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>com.velopayments.blockchain</groupId>
-            <artifactId>velochain-sdk-examples</artifactId>
-            <version>${velochain-sdk.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.awaitility</groupId>
-            <artifactId>awaitility</artifactId>
-            <scope>compile</scope>
-        </dependency>
 
         <dependency>
             <groupId>com.velopayments.blockchain</groupId>

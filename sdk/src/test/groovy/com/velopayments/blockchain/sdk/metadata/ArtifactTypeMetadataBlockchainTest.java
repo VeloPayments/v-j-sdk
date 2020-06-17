@@ -10,8 +10,6 @@ import com.velopayments.blockchain.sdk.TransactionReader;
 import com.velopayments.blockchain.sdk.entity.EntityKeys;
 import com.velopayments.blockchain.sdk.entity.EntityTool;
 import lombok.extern.slf4j.Slf4j;
-import org.awaitility.Duration;
-import org.awaitility.core.ThrowingRunnable;
 import org.codehaus.groovy.runtime.DefaultGroovyMethods;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
@@ -26,7 +24,6 @@ import static com.velopayments.blockchain.cert.Field.PREVIOUS_CERTIFICATE_ID;
 import static com.velopayments.blockchain.sdk.metadata.CoreMetadata.CORE_METADATA_TYPE_ID;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.awaitility.Awaitility.await;
 
 @Slf4j
 public class ArtifactTypeMetadataBlockchainTest {

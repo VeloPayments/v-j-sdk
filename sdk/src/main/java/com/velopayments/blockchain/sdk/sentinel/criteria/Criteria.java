@@ -3,7 +3,6 @@ package com.velopayments.blockchain.sdk.sentinel.criteria;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 

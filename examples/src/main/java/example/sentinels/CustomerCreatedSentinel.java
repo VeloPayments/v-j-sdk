@@ -3,7 +3,6 @@ package example.sentinels;
 import com.velopayments.blockchain.cert.Certificate;
 import com.velopayments.blockchain.cert.Field;
 import com.velopayments.blockchain.client.TransactionStatus;
-import com.velopayments.blockchain.crypt.SigningPrivateKey;
 import com.velopayments.blockchain.sdk.BlockchainOperations;
 import com.velopayments.blockchain.sdk.BlockchainUtils;
 import com.velopayments.blockchain.sdk.TransactionReader;

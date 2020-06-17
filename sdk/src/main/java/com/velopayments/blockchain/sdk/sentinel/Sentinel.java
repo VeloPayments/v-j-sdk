@@ -1,7 +1,6 @@
 package com.velopayments.blockchain.sdk.sentinel;
 
 import com.velopayments.blockchain.sdk.BlockchainOperations;
-import com.velopayments.blockchain.sdk.entity.EntityKeys;
 import com.velopayments.blockchain.sdk.sentinel.criteria.Criteria;
 
 import java.util.Map;
