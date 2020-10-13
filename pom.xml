@@ -51,7 +51,7 @@
         <lombok.version>1.18.8</lombok.version>
         <jackson.version>2.11.0</jackson.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <assertj.version>3.11.1</assertj.version>
         <awaitility.version>3.1.2</awaitility.version>
         <mockito.version>1.9.5</mockito.version>
